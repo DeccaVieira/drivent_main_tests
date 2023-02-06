@@ -1,5 +1,5 @@
-import { prisma } from "@/config";
-import { Hotel, Room, TicketType } from "@prisma/client";
+import { prisma } from '@/config';
+import { Hotel, Room, TicketType } from '@prisma/client';
 
 async function findOptionHotels() {
   return prisma.hotel.findMany({});
@@ -11,17 +11,9 @@ async function findOptionHotelsById(hotelId: number) {
     include: {
       Rooms: {
         where: {
-          hotelId
+          hotelId,
         },
-        select: {
-          id: true,
-          name: true,
-          capacity: true,
-          hotelId: true,
-          createdAt: true,
-          updatedAt: true
-        }
-      }
+      },
     },
   });
   return hotels;
