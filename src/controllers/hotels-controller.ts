@@ -11,10 +11,10 @@ export async function getHotels(req: AuthenticatedRequest, res: Response) {
 
     return res.status(200).send(hotels);
   } catch (error) {
-    if (error.name === 'NotFoundError') {
+    if (error.name === "NotFoundError") {
       return res.status(httpStatus.NOT_FOUND);
     }
-    if (error.name === 'PaymentRequiredError') {
+    if (error.name === 'Payment Required') {
       return res.sendStatus(httpStatus.PAYMENT_REQUIRED);
     }
     return res.sendStatus(httpStatus.BAD_REQUEST);
@@ -32,9 +32,9 @@ export async function findHotelsById(req: AuthenticatedRequest, res: Response) {
     if (error.name === 'NotFoundError') {
       return res.status(httpStatus.NOT_FOUND);
     }
-    if (error.name === 'PaymentRequiredError') {
+    if (error.name === 'Payment Required') {
       return res.sendStatus(httpStatus.PAYMENT_REQUIRED);
     }
-    return res.sendStatus(httpStatus.BAD_REQUEST);
+    return res.sendStatus(httpStatus.PAYMENT_REQUIRED);
   }
 }
